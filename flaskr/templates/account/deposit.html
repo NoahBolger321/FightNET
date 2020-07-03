@@ -1,10 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Deposit Funds{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="amount">Amount</label>
+    <textarea name="amount" id="amount">{{ request.form['amount'] }}</textarea>
+    <input type="submit" value="Save">
+  </form>
+{% endblock %}

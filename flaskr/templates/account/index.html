@@ -1,10 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Transactions{% endblock %}</h1>
+  {% if g.user %}
+    <a class="action" href="{{ url_for('account.deposit') }}">Deposit</a>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  <div>
+    <h1>Current Balance: {{balance}}</h1>
+  </div>
+  {% for transaction in transactions %}
+      <header>
+        <div>
+          <h1>{{ transaction['type'] }}</h1>
+          <div class="about">{{ transaction['amount'] }} on {{ transaction['occurred'].strftime('%Y-%m-%d') }}</div>
+        </div>
+        {% if g.user['id'] == transaction['account_id'] %}
+          <a class="action" href="{{ url_for('account.withdraw') }}">Withdraw</a>
+        {% endif %}
+      </header>
+    {% if not loop.last %}
+      <hr>
+    {% endif %}
+  {% endfor %}
+{% endblock %}
