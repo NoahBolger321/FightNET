@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Post-Fight{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+
+  <form method="post">
+    <label for="winner">Winner</label>
+    <textarea name="winner" id="winner">{{ request.form['winner'] }}</textarea>
+    <input type="submit" value="Save">
+  </form>
+
+{% endblock %}
+
+

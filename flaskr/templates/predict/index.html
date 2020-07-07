@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Predict{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="bet">Bet</label>
+    <textarea name="bet" id="bet">{{ request.form['bet'] }}</textarea>
+
+      <label for="odds">Odds</label>
+    <textarea name="odds" id="odds">{{ request.form['odds'] }}</textarea>
+    <input type="submit" value="Save">
+  </form>
+
+{% endblock %}
+
+

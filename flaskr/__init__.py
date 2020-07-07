@@ -24,11 +24,6 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    # a simple page that says hello
-    @app.route('/predict')
-    def hello():
-        return "Let's predict the future!"
-
     from . import db
     db.init_app(app)
 
@@ -38,5 +33,8 @@ def create_app(test_config=None):
     from . import account
     app.register_blueprint(account.bp)
     app.add_url_rule('/', endpoint='index')
+
+    from . import predict
+    app.register_blueprint(predict.bp)
 
     return app
